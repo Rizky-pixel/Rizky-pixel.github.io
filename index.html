@@ -1,327 +1,423 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Profesional | IT Specialist</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome untuk Icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Rizky Ramadhan — AI / ML & Data Science Specialist</title>
+<meta name="description" content="Portofolio Muhammad Rizky Ramadhan — AI / Machine Learning & Data Science Specialist. Computer vision, NLP, dan otomasi berbasis YOLOv8.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f3ec;        
+    --bg-2:#efeae0;
+    --panel:#ffffff;
+    --line:#e3ddd0;
+    --ink:#161513;
+    --muted:#6b6760;
+    --acc:#ff5b2e;       
+    --acc-2:#1f3b2e;     
+  }
+  html,body{background:var(--bg);color:var(--ink);}
+  body{font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+  .serif{font-family:'Instrument Serif',serif;letter-spacing:-0.01em;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+
+  /* subtle paper noise */
+  .noise{position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.05;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* marquee */
+  .mq{display:flex;gap:3rem;animation:mq 38s linear infinite;will-change:transform;}
+  @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* underline link */
+  .ulink{position:relative;display:inline-block;}
+  .ulink::after{content:"";position:absolute;left:0;bottom:-3px;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s cubic-bezier(.2,.7,.2,1);}
+  .ulink:hover::after{transform:scaleX(1);transform-origin:left;}
+
+  /* project card */
+  .pcard{position:relative;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s,background .5s;}
+  .pcard:hover{transform:translateY(-3px);box-shadow:0 24px 60px -30px rgba(22,21,19,.25);}
+  .pcard .arrow{transition:transform .5s cubic-bezier(.2,.7,.2,1);}
+  .pcard:hover .arrow{transform:translate(4px,-4px);}
+  .num{font-family:'Instrument Serif',serif;font-style:italic;color:var(--acc);}
+  ::selection{background:var(--acc);color:#fff;}
+
+  /* progress */
+  #progress{position:fixed;top:0;left:0;height:2px;background:var(--acc);z-index:80;width:0%;}
+
+  /* portrait sticker */
+  .sticker{transform:rotate(-3deg);transition:transform .6s cubic-bezier(.2,.7,.2,1);}
+  .sticker:hover{transform:rotate(0deg) scale(1.02);}
+
+  /* skill chip */
+  .chip{transition:all .3s;}
+  .chip:hover{background:var(--ink);color:var(--bg);border-color:var(--ink);transform:translateY(-2px);}
+
+  /* mobile menu */
+  #mnav{transform:translateY(-100%);transition:transform .4s cubic-bezier(.2,.7,.2,1);}
+  #mnav.open{transform:none;}
+
+  /* big hero name responsive */
+  .hero-name{font-size:clamp(3.4rem, 14vw, 11rem);line-height:.88;font-weight:300;letter-spacing:-.02em;}
+
+  details summary::-webkit-details-marker{display:none;}
+</style>
 </head>
+<body>
+<div class="noise"></div>
+<div id="progress"></div>
 
-<body class="bg-gray-900 text-gray-100 font-sans antialiased selection:bg-emerald-500 selection:text-white">
+<!-- NAV -->
+<nav class="fixed top-0 inset-x-0 z-40 px-4 sm:px-6 md:px-10 py-4 flex items-center justify-between backdrop-blur-md bg-[color:var(--bg)]/75 border-b border-[color:var(--line)]">
+  <a href="#top" class="flex items-center gap-2 min-w-0">
+    <span class="w-2 h-2 rounded-full bg-[color:var(--acc)] shrink-0"></span>
+    <span class="mono text-[11px] sm:text-sm tracking-widest uppercase truncate">rmdhn / portofolio</span>
+  </a>
+  <div class="hidden md:flex gap-8 text-sm">
+    <a href="#tentang" class="ulink mono uppercase tracking-widest text-xs"><span class="num"></span> Tentang</a>
+    <a href="#keahlian" class="ulink mono uppercase tracking-widest text-xs"><span class="num"></span> Keahlian</a>
+    <a href="#project" class="ulink mono uppercase tracking-widest text-xs"><span class="num"></span> Project</a>
+    <a href="#kontak" class="ulink mono uppercase tracking-widest text-xs"><span class="num"></span> Kontak</a>
+  </div>
+  <a href="#kontak" class="hidden md:inline-flex items-center gap-2 mono text-xs uppercase tracking-widest border border-[color:var(--ink)] bg-[color:var(--ink)] text-[color:var(--bg)] hover:bg-[color:var(--acc)] hover:border-[color:var(--acc)] px-3 py-2 rounded-full transition">
+    <span class="w-1.5 h-1.5 rounded-full bg-[color:var(--acc)]"></span> tersedia
+  </a>
+  <button id="mbtn" aria-label="menu" class="md:hidden w-10 h-10 grid place-items-center rounded-full border border-[color:var(--line)]">
+    <i id="micn" class="fas fa-bars text-sm"></i>
+  </button>
+</nav>
 
-    <!-- 1. NAVBAR -->
-    <nav class="fixed top-0 w-full bg-gray-900/80 backdrop-blur-md z-50 border-b border-gray-800">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <span class="text-xl font-bold tracking-wider text-emerald-400">PORTOFOLIO</span>
-            <div class="hidden md:flex space-x-8 text-sm font-medium">
-                <a href="#tentang" class="hover:text-emerald-400 transition">Tentang</a>
-                <a href="#keahlian" class="hover:text-emerald-400 transition">Keahlian</a>
-                <a href="#project" class="hover:text-emerald-400 transition">Project</a>
-                <a href="#kontak" class="hover:text-emerald-400 transition">Kontak</a>
-            </div>
+<!-- MOBILE NAV -->
+<div id="mnav" class="fixed inset-x-0 top-0 z-30 md:hidden pt-20 pb-8 px-6 bg-[color:var(--bg)] border-b border-[color:var(--line)] shadow-xl">
+  <div class="flex flex-col gap-1 mono text-sm uppercase tracking-widest">
+    <a href="#tentang" class="py-3 border-b border-[color:var(--line)] flex justify-between"><span><span class="num mr-3"></span>Tentang</span><i class="fas fa-arrow-right text-xs self-center opacity-50"></i></a>
+    <a href="#keahlian" class="py-3 border-b border-[color:var(--line)] flex justify-between"><span><span class="num mr-3"></span>Keahlian</span><i class="fas fa-arrow-right text-xs self-center opacity-50"></i></a>
+    <a href="#project" class="py-3 border-b border-[color:var(--line)] flex justify-between"><span><span class="num mr-3"></span>Project</span><i class="fas fa-arrow-right text-xs self-center opacity-50"></i></a>
+    <a href="#kontak" class="py-3 flex justify-between"><span><span class="num mr-3"></span>Kontak</span><i class="fas fa-arrow-right text-xs self-center opacity-50"></i></a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="top" class="relative min-h-[100svh] px-4 sm:px-6 md:px-10 pt-28 sm:pt-32 pb-12 flex flex-col">
+  <div class="relative max-w-[1400px] mx-auto w-full grid md:grid-cols-12 gap-8 md:gap-10 items-center flex-1">
+    <div class="md:col-span-7 order-2 md:order-1">
+      <p class="mono text-[color:var(--acc)] text-[11px] uppercase tracking-[0.3em] reveal">Halo, nama saya —</p>
+      <h1 class="mt-4 sm:mt-6 hero-name">
+        <span class="block reveal">Muhammad</span>
+        <span class="block reveal" style="transition-delay:.08s">Rizky <span class="serif italic font-normal text-[color:var(--acc)]">Ramadhan.</span></span>
+      </h1>
+      <h2 class="mt-6 sm:mt-8 text-base sm:text-xl md:text-2xl text-[color:var(--muted)] max-w-xl reveal leading-snug" style="transition-delay:.16s">
+        <span class="text-[color:var(--ink)] font-medium">AI / Machine Learning</span> &amp; <span class="serif italic text-[color:var(--ink)]">Data Science Specialist</span> — membangun model cerdas, computer vision, dan pipeline data untuk masalah nyata.
+      </h2>
+
+      <div class="mt-8 sm:mt-12 flex flex-wrap gap-3 reveal" style="transition-delay:.24s">
+        <a href="#project" class="group inline-flex items-center gap-3 bg-[color:var(--ink)] text-[color:var(--bg)] font-medium px-5 sm:px-6 py-3 sm:py-3.5 rounded-full hover:bg-[color:var(--acc)] transition">
+          <span>Lihat Project</span>
+          <i class="fas fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+        </a>
+        <a href="cv.pdf" download class="inline-flex items-center gap-3 border border-[color:var(--ink)] hover:bg-[color:var(--ink)] hover:text-[color:var(--bg)] px-5 sm:px-6 py-3 sm:py-3.5 rounded-full transition">
+          <i class="fas fa-arrow-down"></i> Unduh CV
+        </a>
+      </div>
+    </div>
+
+    <!-- portrait sticker -->
+    <div class="md:col-span-5 order-1 md:order-2 flex justify-center md:justify-end reveal" style="transition-delay:.1s">
+      <div class="sticker relative">
+        <div class="absolute -inset-3 sm:-inset-4 rounded-[2.2rem] bg-[color:var(--acc)]/15 blur-2xl"></div>
+        <div class="relative w-[230px] h-[300px] sm:w-[280px] sm:h-[360px] md:w-[340px] md:h-[440px] overflow-hidden rounded-[1.8rem] border border-[color:var(--line)] bg-[color:var(--panel)] shadow-[0_30px_60px_-30px_rgba(22,21,19,0.4)]">
+          <img src="profile.jpeg" alt="Muhammad Rizky Ramadhan" class="w-full h-full object-cover object-top">
+          <div class="absolute top-3 left-3 mono text-[9px] uppercase tracking-widest bg-[color:var(--ink)] text-[color:var(--bg)] px-2 py-1 rounded-full">/ 2025</div>
+          <div class="absolute bottom-3 right-3 mono text-[9px] uppercase tracking-widest bg-[color:var(--acc)] text-white px-2 py-1 rounded-full flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span> open
+          </div>
         </div>
-    </nav>
+      </div>
+    </div>
+  </div>
 
-    <!-- 2. HERO SECTION -->
-    <section class="min-h-screen flex items-center justify-center pt-16 px-4">
-        <div class="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <!-- Sisi Kiri: Teks Konten (Rata Kiri) -->
-            <div class="text-left">
-                <p class="text-emerald-400 font-mono text-sm sm:text-base mb-3">Halo, nama saya</p>
-                <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight mb-4">Muhammad Rizky Ramadhan
-                </h1>
-                <h2 class="text-2xl sm:text-4xl font-bold text-gray-400 mb-6">AI / Machine Learning & Data Science
-                    Specialist</h2>
-                <p class="text-gray-400 text-sm sm:text-base mb-8 leading-relaxed">
-                    Lulusan IT yang berfokus pada pengembangan model cerdas, computer vision, dan pengolahan data skala
-                    besar untuk menyelesaikan masalah nyata.
-                </p>
-                <div class="flex flex-wrap gap-4 justify-start">
-                    <a href="#project"
-                        class="bg-emerald-500 hover:bg-emerald-600 text-gray-900 font-bold px-6 py-3 rounded-lg transition shadow-lg shadow-emerald-500/20 flex items-center gap-2">
-                        <i class="fas fa-folder-open"></i> Lihat Project
-                    </a>
-                    <a href="cv.pdf" download
-                        class="border-2 border-emerald-500 hover:bg-emerald-500/10 text-emerald-400 hover:text-emerald-300 font-bold px-6 py-3 rounded-lg transition flex items-center gap-2 shadow-lg shadow-emerald-500/5">
-                        <i class="fas fa-file-download animate-bounce"></i> Unduh CV
-                    </a>
-                    <a href="#kontak"
-                        class="border border-gray-750 hover:border-gray-500 text-gray-400 hover:text-gray-300 px-6 py-3 rounded-lg transition flex items-center gap-2">
-                        <i class="fas fa-paper-plane"></i> Hubungi Saya
-                    </a>
-                </div>
+  <div class="relative max-w-[1400px] mx-auto w-full mt-10 sm:mt-16 flex flex-wrap items-end justify-between gap-3">
+    <div class="mono text-[10px] uppercase tracking-widest text-[color:var(--muted)]">
+      <span id="clock" class="tabular-nums"></span> · WIB · Karawang, ID
+    </div>
+    <a href="#tentang" class="mono text-[10px] uppercase tracking-widest text-[color:var(--muted)] hover:text-[color:var(--ink)] flex items-center gap-3 group">
+      <span class="w-10 h-px bg-[color:var(--muted)] group-hover:bg-[color:var(--ink)] group-hover:w-16 transition-all"></span>
+      gulir
+    </a>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<section class="border-y border-[color:var(--line)] py-4 sm:py-6 overflow-hidden bg-[color:var(--bg-2)]">
+  <div class="mq whitespace-nowrap serif text-3xl sm:text-5xl md:text-6xl">
+    <div class="flex gap-8 sm:gap-12 items-center pr-8">
+      <span>Computer Vision</span><span class="text-[color:var(--acc)]">✦</span>
+      <span class="italic">Deep Learning</span><span class="text-[color:var(--acc)]">✦</span>
+      <span>YOLOv8</span><span class="text-[color:var(--acc)]">✦</span>
+      <span class="italic">NLP</span><span class="text-[color:var(--acc)]">✦</span>
+      <span>Data Engineering</span><span class="text-[color:var(--acc)]">✦</span>
+      <span class="italic">Python</span><span class="text-[color:var(--acc)]">✦</span>
+    </div>
+    <div class="flex gap-8 sm:gap-12 items-center pr-8" aria-hidden="true">
+      <span>Computer Vision</span><span class="text-[color:var(--acc)]">✦</span>
+      <span class="italic">Deep Learning</span><span class="text-[color:var(--acc)]">✦</span>
+      <span>YOLOv8</span><span class="text-[color:var(--acc)]">✦</span>
+      <span class="italic">NLP</span><span class="text-[color:var(--acc)]">✦</span>
+      <span>Data Engineering</span><span class="text-[color:var(--acc)]">✦</span>
+      <span class="italic">Python</span><span class="text-[color:var(--acc)]">✦</span>
+    </div>
+  </div>
+</section>
+
+<!-- TENTANG -->
+<section id="tentang" class="px-4 sm:px-6 md:px-10 py-20 sm:py-28 md:py-36">
+  <div class="max-w-[1200px] mx-auto grid md:grid-cols-12 gap-10 md:gap-12">
+    <div class="md:col-span-5 reveal">
+      <p class="mono text-[11px] uppercase tracking-[0.3em] text-[color:var(--muted)]"><span class="num text-2xl mr-2 align-middle"></span>Tentang Saya</p>
+      <h2 class="serif text-4xl sm:text-5xl md:text-6xl mt-5 sm:mt-6 leading-[1]">
+        Mengubah <span class="italic text-[color:var(--acc)]">data mentah</span> menjadi wawasan.
+      </h2>
+    </div>
+    <div class="md:col-span-6 md:col-start-7 space-y-5 sm:space-y-6 reveal" style="transition-delay:.1s">
+      <p class="text-base sm:text-lg text-[color:var(--muted)] leading-relaxed">
+        Saya seorang profesional IT dengan ketertarikan mendalam pada <span class="text-[color:var(--ink)] font-medium">kecerdasan buatan</span> dan rekayasa data. Berbekal latar belakang akademik yang kuat, saya senang mengeksplorasi bagaimana algoritma dapat mengubah data mentah menjadi wawasan berharga.
+      </p>
+      <p class="text-base sm:text-lg text-[color:var(--muted)] leading-relaxed">
+        Saya terbiasa <span class="text-[color:var(--ink)] font-medium">melatih model klasifikasi secara mandiri</span>, mengoptimalkan pipeline data, dan mengintegrasikan model AI ke dalam sistem aplikasi yang siap pakai.
+      </p>
+      <dl class="grid grid-cols-3 gap-4 sm:gap-6 pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-[color:var(--line)]">
+        <div><dt class="mono text-[10px] uppercase tracking-widest text-[color:var(--muted)]">Project</dt><dd class="serif text-3xl sm:text-4xl mt-2"><span class="num">04</span><span class="text-[color:var(--muted)] text-lg">+</span></dd></div>
+        <div><dt class="mono text-[10px] uppercase tracking-widest text-[color:var(--muted)]">Fokus</dt><dd class="serif text-2xl sm:text-4xl mt-2 italic">CV / NLP</dd></div>
+        <div><dt class="mono text-[10px] uppercase tracking-widest text-[color:var(--muted)]">Status</dt><dd class="serif text-2xl sm:text-4xl mt-2 italic text-[color:var(--acc)]">open</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- KEAHLIAN -->
+<section id="keahlian" class="px-4 sm:px-6 md:px-10 py-20 sm:py-28 md:py-36 bg-[color:var(--bg-2)] border-y border-[color:var(--line)]">
+  <div class="max-w-[1200px] mx-auto">
+    <div class="mb-12 sm:mb-16 reveal">
+      <p class="mono text-[11px] uppercase tracking-[0.3em] text-[color:var(--muted)]"><span class="num text-2xl mr-2 align-middle"></span>Keahlian &amp; Teknologi</p>
+      <h2 class="serif text-4xl sm:text-5xl md:text-6xl mt-5 sm:mt-6 leading-[1]">Tumpukan kerja saya.</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+      <div class="reveal p-5 sm:p-6 bg-[color:var(--panel)] border border-[color:var(--line)] rounded-2xl hover:border-[color:var(--ink)] transition">
+        <i class="fab fa-python text-3xl sm:text-4xl text-[color:var(--acc)]"></i>
+        <p class="mt-5 sm:mt-6 font-semibold text-sm sm:text-base">Python</p>
+        <p class="mono text-[10px] uppercase tracking-widest text-[color:var(--muted)] mt-1">core language</p>
+      </div>
+      <div class="reveal p-5 sm:p-6 bg-[color:var(--panel)] border border-[color:var(--line)] rounded-2xl hover:border-[color:var(--ink)] transition" style="transition-delay:.05s">
+        <i class="fas fa-brain text-3xl sm:text-4xl text-[color:var(--acc)]"></i>
+        <p class="mt-5 sm:mt-6 font-semibold text-sm sm:text-base">Deep Learning</p>
+        <p class="mono text-[10px] uppercase tracking-widest text-[color:var(--muted)] mt-1">pytorch · tf</p>
+      </div>
+      <div class="reveal p-5 sm:p-6 bg-[color:var(--panel)] border border-[color:var(--line)] rounded-2xl hover:border-[color:var(--ink)] transition" style="transition-delay:.1s">
+        <i class="fas fa-database text-3xl sm:text-4xl text-[color:var(--acc)]"></i>
+        <p class="mt-5 sm:mt-6 font-semibold text-sm sm:text-base">Big Data / SQL</p>
+        <p class="mono text-[10px] uppercase tracking-widest text-[color:var(--muted)] mt-1">pipeline · analytics</p>
+      </div>
+      <div class="reveal p-5 sm:p-6 bg-[color:var(--panel)] border border-[color:var(--line)] rounded-2xl hover:border-[color:var(--ink)] transition" style="transition-delay:.15s">
+        <i class="fab fa-linux text-3xl sm:text-4xl text-[color:var(--acc)]"></i>
+        <p class="mt-5 sm:mt-6 font-semibold text-sm sm:text-base">Linux Admin</p>
+        <p class="mono text-[10px] uppercase tracking-widest text-[color:var(--muted)] mt-1">server · deploy</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT -->
+<section id="project" class="px-4 sm:px-6 md:px-10 py-20 sm:py-28 md:py-36">
+  <div class="max-w-[1200px] mx-auto">
+    <div class="mb-12 sm:mb-16 reveal">
+      <p class="mono text-[11px] uppercase tracking-[0.3em] text-[color:var(--muted)]"><span class="num text-2xl mr-2 align-middle"></span>Project</p>
+      <h2 class="serif text-4xl sm:text-5xl md:text-6xl mt-5 sm:mt-6 leading-[1]">Karya terpilih, <span class="italic text-[color:var(--acc)]">dikirim.</span></h2>
+    </div>
+
+    <div class="space-y-4 sm:space-y-5">
+
+      <!-- PROJECT CARDS -->
+      <a href="https://github.com/rizky-rmdhn/sampah-klasifikasi-YOLOv8-dan-EfficientNet" target="_blank" rel="noopener" class="pcard block rounded-2xl sm:rounded-3xl border border-[color:var(--line)] p-6 sm:p-8 md:p-10 bg-[color:var(--panel)] reveal">
+        <div class="grid grid-cols-[auto_1fr_auto] sm:grid-cols-12 gap-4 sm:gap-6 items-start">
+          <div class="sm:col-span-2 mono text-[10px] sm:text-xs uppercase tracking-widest text-[color:var(--muted)]">
+            <span class="num text-2xl sm:text-3xl block leading-none">01</span>
+            <span class="block mt-1 sm:mt-2">2024</span>
+          </div>
+          <div class="sm:col-span-8 min-w-0">
+            <span class="mono text-[10px] sm:text-xs text-[color:var(--acc)] tracking-wider">Deep Learning &amp; Computer Vision</span>
+            <h3 class="serif text-2xl sm:text-3xl md:text-4xl mt-2 leading-tight">
+              Sistem Klasifikasi Sampah Organik &amp; Anorganik Berbasis Arsitektur <span class="italic">EfficientNet</span>
+            </h3>
+            <p class="text-[color:var(--muted)] mt-3 sm:mt-4 leading-relaxed text-sm sm:text-base">
+              Model <em>Deep Learning</em> dengan Framework YOLOv8 dan arsitektur <strong class="text-[color:var(--ink)]">EfficientNet</strong> untuk mengklasifikasikan sampah organik/anorganik. Dilatih dengan dataset asli (bukan cropping) sehingga generalisasi lebih baik.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-4 sm:mt-6 mono text-[10px] uppercase tracking-widest">
+              <span class="chip px-2.5 py-1 rounded-full border border-[color:var(--line)] text-[color:var(--muted)]">Python</span>
+              <span class="chip px-2.5 py-1 rounded-full border border-[color:var(--line)] text-[color:var(--muted)]">YOLOv8</span>
+              <span class="chip px-2.5 py-1 rounded-full border border-[color:var(--line)] text-[color:var(--muted)]">EfficientNet</span>
+              <span class="chip px-2.5 py-1 rounded-full border border-[color:var(--line)] text-[color:var(--muted)]">PyTorch</span>
             </div>
-
-            <!-- Sisi Kanan: Tempat untuk Foto Anda (Frame Angka 8 Diperbaiki) -->
-            <div class="flex justify-center md:justify-end items-center">
-                <div class="relative group">
-                    <!-- Efek Glowing Background -->
-                    <div
-                        class="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%] blur opacity-30 group-hover:opacity-50 transition duration-500 animate-[spin_10s_linear_infinite]">
-                    </div>
-
-                    <!-- Foto -->
-                    <img src="profile.jpeg" alt="Muhammad Rizky Ramadhan"
-                        class="relative w-72 h-72 md:w-80 md:h-80 object-cover object-top border-4 border-emerald-400 shadow-2xl transition-all duration-500
-                               rounded-[30%_70%_70%_30%_/_50%_30%_70%_50%] group-hover:rounded-[50%_50%_50%_50%_/_30%_70%_30%_70%]">
-                </div>
-            </div>
+          </div>
+          <div class="sm:col-span-2 flex sm:justify-end items-start gap-2 text-[color:var(--ink)] self-start">
+            <i class="fab fa-github text-xl sm:text-2xl"></i>
+            <i class="fas fa-arrow-up-right-from-square arrow text-xs sm:text-sm mt-1"></i>
+          </div>
         </div>
-    </section>
+      </a>
 
-    <!-- 3. TENTANG SAYA -->
-    <section id="tentang" class="py-20 bg-gray-800/40">
-        <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-2xl font-bold text-white border-b-2 border-emerald-500 w-fit pb-2 mb-8">01. Tentang Saya
-            </h2>
-            <div class="text-gray-400 space-y-4 leading-relaxed">
-                <p>Saya adalah seorang profesional IT dengan ketertarikan mendalam pada kecerdasan buatan dan rekayasa
-                    data. Berbekal latar belakang akademik yang kuat, saya senang mengeksplorasi bagaimana algoritma
-                    dapat mengubah data mentah menjadi wawasan yang berharga.</p>
-                <p>Saya terbiasa melatih model klasifikasi secara mandiri, mengoptimalkan pipeline data, dan
-                    mengintegrasikan model AI ke dalam sistem aplikasi yang siap pakai.</p>
+      <a href="https://github.com/rizky-rmdhn/Analisis-Sentimen-NLP" target="_blank" rel="noopener" class="pcard block rounded-2xl sm:rounded-3xl border border-[color:var(--line)] p-6 sm:p-8 md:p-10 bg-[color:var(--panel)] reveal">
+        <div class="grid grid-cols-[auto_1fr_auto] sm:grid-cols-12 gap-4 sm:gap-6 items-start">
+          <div class="sm:col-span-2 mono text-[10px] sm:text-xs uppercase tracking-widest text-[color:var(--muted)]">
+            <span class="num text-2xl sm:text-3xl block leading-none">02</span>
+            <span class="block mt-1 sm:mt-2">2024</span>
+          </div>
+          <div class="sm:col-span-8 min-w-0">
+            <span class="mono text-[10px] sm:text-xs text-[color:var(--acc)] tracking-wider">Natural Language Processing</span>
+            <h3 class="serif text-2xl sm:text-3xl md:text-4xl mt-2 leading-tight">
+              Analisis <span class="italic">Sentimen</span> Komentar YouTube Berbasis NLP
+            </h3>
+            <p class="text-[color:var(--muted)] mt-3 sm:mt-4 leading-relaxed text-sm sm:text-base">
+              Sistem klasifikasi teks dengan teknik <em>NLP</em> untuk mengelompokkan komentar YouTube ke sentimen positif/negatif. Melibatkan <em>cleansing, case folding, tokenizing, stopword removal,</em> dan <em>stemming</em>.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-4 sm:mt-6 mono text-[10px] uppercase tracking-widest">
+              <span class="chip px-2.5 py-1 rounded-full border border-[color:var(--line)] text-[color:var(--muted)]">Python</span>
+              <span class="chip px-2.5 py-1 rounded-full border border-[color:var(--line)] text-[color:var(--muted)]">NLP</span>
+              <span class="chip px-2.5 py-1 rounded-full border border-[color:var(--line)] text-[color:var(--muted)]">Scikit-Learn</span>
+              <span class="chip px-2.5 py-1 rounded-full border border-[color:var(--line)] text-[color:var(--muted)]">NLTK</span>
             </div>
+          </div>
+          <div class="sm:col-span-2 flex sm:justify-end items-start gap-2 text-[color:var(--ink)] self-start">
+            <i class="fab fa-github text-xl sm:text-2xl"></i>
+            <i class="fas fa-arrow-up-right-from-square arrow text-xs sm:text-sm mt-1"></i>
+          </div>
         </div>
-    </section>
+      </a>
 
-    <!-- 4. KEAHLIAN / TECH STACK -->
-    <section id="keahlian" class="py-20">
-        <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-2xl font-bold text-white border-b-2 border-emerald-500 w-fit pb-2 mb-8">02. Keahlian &
-                Teknologi</h2>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <div class="bg-gray-850 p-4 rounded-xl border border-gray-800 text-center hover:border-emerald-500/50 transition">
-                    <i class="fab fa-python text-3xl text-yellow-500 mb-2"></i>
-                    <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-white hover:text-emerald-400 block transition">Python</a>
-                </div>
-                <div
-                    class="bg-gray-850 p-4 rounded-xl border border-gray-800 text-center hover:border-emerald-500/50 transition">
-                    <i class="fas fa-brain text-3xl text-red-500 mb-2"></i>
-                    <p class="text-sm font-semibold text-white">Deep Learning</p>
-                </div>
-                <div
-                    class="bg-gray-850 p-4 rounded-xl border border-gray-800 text-center hover:border-emerald-500/50 transition">
-                    <i class="fas fa-database text-3xl text-blue-500 mb-2"></i>
-                    <p class="text-sm font-semibold text-white">Big Data / SQL</p>
-                </div>
-                <div
-                    class="bg-gray-850 p-4 rounded-xl border border-gray-800 text-center hover:border-emerald-500/50 transition">
-                    <i class="fab fa-linux text-3xl text-orange-500 mb-2"></i>
-                    <p class="text-sm font-semibold text-white">Linux Administration</p>
-                </div>
+      <a href="https://github.com/rizky-rmdhn" target="_blank" rel="noopener" class="pcard block rounded-2xl sm:rounded-3xl border border-[color:var(--line)] p-6 sm:p-8 md:p-10 bg-[color:var(--panel)] reveal">
+        <div class="grid grid-cols-[auto_1fr_auto] sm:grid-cols-12 gap-4 sm:gap-6 items-start">
+          <div class="sm:col-span-2 mono text-[10px] sm:text-xs uppercase tracking-widest text-[color:var(--muted)]">
+            <span class="num text-2xl sm:text-3xl block leading-none">03</span>
+            <span class="block mt-1 sm:mt-2">2025</span>
+          </div>
+          <div class="sm:col-span-8 min-w-0">
+            <span class="mono text-[10px] sm:text-xs text-[color:var(--acc)] tracking-wider">Computer Vision &amp; Image Processing</span>
+            <h3 class="serif text-2xl sm:text-3xl md:text-4xl mt-2 leading-tight">
+              Sistem Deteksi &amp; Ekstraksi Teks <span class="italic">Plat Nomor</span> Berbasis YOLOv8
+            </h3>
+            <p class="text-[color:var(--muted)] mt-3 sm:mt-4 leading-relaxed text-sm sm:text-base">
+              Sistem <em>Automatic Number Plate Recognition</em> (ANPR) menggunakan <strong class="text-[color:var(--ink)]">YOLOv8</strong> untuk mendeteksi plat secara <em>real-time</em>, lalu diintegrasikan dengan <em>Image Processing</em> dan <em>OCR</em>.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-4 sm:mt-6 mono text-[10px] uppercase tracking-widest">
+              <span class="chip px-2.5 py-1 rounded-full border border-[color:var(--line)] text-[color:var(--muted)]">Python</span>
+              <span class="chip px-2.5 py-1 rounded-full border border-[color:var(--line)] text-[color:var(--muted)]">YOLOv8</span>
+              <span class="chip px-2.5 py-1 rounded-full border border-[color:var(--line)] text-[color:var(--muted)]">OpenCV</span>
+              <span class="chip px-2.5 py-1 rounded-full border border-[color:var(--line)] text-[color:var(--muted)]">OCR</span>
             </div>
+          </div>
+          <div class="sm:col-span-2 flex sm:justify-end items-start gap-2 text-[color:var(--ink)] self-start">
+            <i class="fab fa-github text-xl sm:text-2xl"></i>
+            <i class="fas fa-arrow-up-right-from-square arrow text-xs sm:text-sm mt-1"></i>
+          </div>
         </div>
-    </section>
+      </a>
 
-    <!-- 5. PROYEK ANDALAN -->
-    <section id="project" class="py-20 bg-gray-800/40">
-        <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-2xl font-bold text-white border-b-2 border-emerald-500 w-fit pb-2 mb-12">03. Project</h2>
-
-            <div class="space-y-12">
-
-                <!-- Card Project 1: YOLOv8 and EfficientNet Waste Classification -->
-                <div
-                    class="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden hover:border-emerald-500/30 transition-all duration-300 group">
-                    <div class="p-6 md:p-8">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="text-xs font-mono text-emerald-400 tracking-wider">// Deep Learning & Computer
-                                Vision</span>
-                            <div class="flex space-x-3 text-gray-400 text-sm">
-                                <a href="https://github.com/rizky-rmdhn/sampah-klasifikasi-YOLOv8-dan-EfficientNet" target="_blank"
-                                    rel="noopener noreferrer" class="hover:text-emerald-400 transition"
-                                    title="Lihat Source Code">
-                                    <i class="fab fa-github text-xl"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <h3 class="text-xl md:text-2xl font-bold mb-3">
-                            <a href="https://github.com/rizky-rmdhn/sampah-klasifikasi-YOLOv8-dan-EfficientNet" target="_blank"
-                                rel="noopener noreferrer"
-                                class="text-white group-hover:text-emerald-400 transition hover:underline">
-                                Sistem Klasifikasi Sampah Organik & Anorganik Berbasis Arsitektur EfficientNet
-                            </a>
-                        </h3>
-                        <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-4">
-                            Mengembangkan model *Deep Learning* menggunakan Framework YOLOv8 dan Arsitektur
-                            **EfficientNet** untuk mengklasifikasikan sampah ke dalam kategori organik dan anorganik.
-                            Model ini dilatih secara mandiri menggunakan dataset organik dan anorganik yang bersifat
-                            organik/asli (bukan hasil cropping), sehingga memiliki generalisasi yang lebih baik saat
-                            mendeteksi objek utuh di lingkungan nyata.
-                        </p>
-                        <div class="flex flex-wrap gap-2 text-xs font-mono text-gray-400 mb-2">
-                            <span class="bg-gray-800 px-3 py-1 rounded-md border border-gray-700">Python</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-md border border-gray-700">YOLOv8</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-md border border-gray-700">EfficientNet</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-md border border-gray-700">PyTorch /
-                                TensorFlow</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-md border border-gray-700">Image
-                                Classification</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card Project 2: YouTube Sentiment Analysis -->
-                <div
-                    class="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden hover:border-emerald-500/30 transition-all duration-300 group">
-                    <div class="p-6 md:p-8">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="text-xs font-mono text-emerald-400 tracking-wider">// Natural Language
-                                Processing (NLP) & Data Science</span>
-                            <div class="flex space-x-3 text-gray-400 text-sm">
-                                <a href="https://github.com/rizky-rmdhn/Analisis-Sentimen-NLP" target="_blank"
-                                    rel="noopener noreferrer" class="hover:text-emerald-400 transition"
-                                    title="Lihat Source Code">
-                                    <i class="fab fa-github text-xl"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <h3 class="text-xl md:text-2xl font-bold mb-3">
-                            <a href="https://github.com/rizky-rmdhn/Analisis-Sentimen-NLP" target="_blank"
-                                rel="noopener noreferrer"
-                                class="text-white group-hover:text-emerald-400 transition hover:underline">
-                                Analisis Sentimen Komentar YouTube Berbasis NLP
-                            </a>
-                        </h3>
-                        <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-4">
-                            Membangun sistem klasifikasi teks menggunakan teknik *Natural Language Processing* (NLP)
-                            untuk menganalisis dan mengelompokkan sentimen komentar pada platform YouTube ke dalam
-                            kategori positif dan negatif. Proyek ini melibatkan proses *text preprocessing* yang
-                            komprehensif seperti *cleansing, case folding, tokenizing, filtering (stopword removal)*,
-                            dan *stemming* sebelum dilakukan ekstraksi fitur dan pemodelan klasifikasi.
-                        </p>
-                        <div class="flex flex-wrap gap-2 text-xs font-mono text-gray-400 mb-2">
-                            <span class="bg-gray-800 px-3 py-1 rounded-md border border-gray-700">Python</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-md border border-gray-700">NLP</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-md border border-gray-700">Text
-                                Preprocessing</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-md border border-gray-700">Scikit-Learn /
-                                NLTK</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card Project 3: YOLOv8 License Plate Detection & OCR -->
-                <div class="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden hover:border-emerald-500/30 transition-all duration-300 group">
-                    <div class="p-6 md:p-8">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="text-xs font-mono text-emerald-400 tracking-wider">// Computer Vision & Image Processing</span>
-                            <div class="flex space-x-3 text-gray-400 text-sm">
-                                <!-- Ganti link di bawah ini dengan link repository proyek plat nomormu jika ada -->
-                                <a href="https://github.com/rizky-rmdhn" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition" title="Lihat Source Code">
-                                    <i class="fab fa-github text-xl"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <h3 class="text-xl md:text-2xl font-bold mb-3">
-                            <a href="https://github.com/rizky-rmdhn" target="_blank" rel="noopener noreferrer" class="text-white group-hover:text-emerald-400 transition hover:underline">
-                                Sistem Deteksi dan Ekstraksi Teks Plat Nomor Kendaraan Berbasis YOLOv8
-                            </a>
-                        </h3>
-                        <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-4">
-                            Mengembangkan sistem *Automatic Number Plate Recognition* (ANPR) menggunakan framework **YOLOv8** untuk mendeteksi lokasi plat nomor kendaraan secara *real-time*. Proyek ini mengintegrasikan model deteksi objek dengan teknik *Image Processing* dan *Optical Character Recognition* (OCR) untuk mengekstrak dan mengubah karakter gambar pada plat menjadi teks digital secara otomatis dengan tingkat akurasi yang tinggi.
-                        </p>
-                        <div class="flex flex-wrap gap-2 text-xs font-mono text-gray-400 mb-2">
-                            <span class="bg-gray-800 px-3 py-1 rounded-md border border-gray-700">Python</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-md border border-gray-700">YOLOv8</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-md border border-gray-700">OpenCV</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-md border border-gray-700">OCR (Optical Character Recognition)</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-md border border-gray-700">Object Detection</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card Project 4: YOLOv8 egg obejct counting -->
-                <div class="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden hover:border-emerald-500/30 transition-all duration-300 group">
-                    <div class="p-6 md:p-8">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="text-xs font-mono text-emerald-400 tracking-wider">// Computer Vision & Industrial Automation</span>
-                            <div class="flex space-x-3 text-gray-400 text-sm">
-                                <a href="https://github.com/rizky-rmdhn" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition" title="Lihat Source Code">
-                                    <i class="fab fa-github text-xl"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <h3 class="text-xl md:text-2xl font-bold mb-3">
-                            <a href="https://github.com/rizky-rmdhn" target="_blank" rel="noopener noreferrer" class="text-white group-hover:text-emerald-400 transition hover:underline">
-                                Sistem Deteksi Klasifikasi dan Penghitung Jumlah Telur Real-Time Berbasis YOLOv8
-                            </a>
-                        </h3>
-                        <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-4">
-                            Membangun sistem otomatisasi berbasis kamera untuk mendeteksi, mengklasifikasikan, sekaligus menghitung (*object counting*) jumlah telur secara *real-time*. Dengan memanfaatkan framework **YOLOv8** dan tracking logik, sistem ini mampu melacak pergerakan objek yang melewati garis batas (*line counter*) untuk meminimalkan kesalahan perhitungan ganda pada video *stream* konveyor industri.
-                        </p>
-                        <div class="flex flex-wrap gap-2 text-xs font-mono text-gray-400 mb-2">
-                            <span class="bg-gray-800 px-3 py-1 rounded-md border border-gray-700">Python</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-md border border-gray-700">YOLOv8</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-md border border-gray-700">OpenCV</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-md border border-gray-700">Object Counting</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-md border border-gray-700">Real-Time Analytics</span>
-                        </div>
-                    </div>
-                </div>
+      <a href="https://github.com/rizky-rmdhn" target="_blank" rel="noopener" class="pcard block rounded-2xl sm:rounded-3xl border border-[color:var(--line)] p-6 sm:p-8 md:p-10 bg-[color:var(--panel)] reveal">
+        <div class="grid grid-cols-[auto_1fr_auto] sm:grid-cols-12 gap-4 sm:gap-6 items-start">
+          <div class="sm:col-span-2 mono text-[10px] sm:text-xs uppercase tracking-widest text-[color:var(--muted)]">
+            <span class="num text-2xl sm:text-3xl block leading-none">04</span>
+            <span class="block mt-1 sm:mt-2">2025</span>
+          </div>
+          <div class="sm:col-span-8 min-w-0">
+            <span class="mono text-[10px] sm:text-xs text-[color:var(--acc)] tracking-wider">Computer Vision &amp; Industrial Automation</span>
+            <h3 class="serif text-2xl sm:text-3xl md:text-4xl mt-2 leading-tight">
+              Sistem Deteksi &amp; <span class="italic">Penghitung Telur</span> Real-Time YOLOv8
+            </h3>
+            <p class="text-[color:var(--muted)] mt-3 sm:mt-4 leading-relaxed text-sm sm:text-base">
+              Otomatisasi berbasis kamera untuk mendeteksi, mengklasifikasikan, dan menghitung jumlah telur <em>real-time</em>. Menggunakan <strong class="text-[color:var(--ink)]">YOLOv8</strong> dengan <em>tracking</em> dan <em>line counter</em> untuk konveyor industri.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-4 sm:mt-6 mono text-[10px] uppercase tracking-widest">
+              <span class="chip px-2.5 py-1 rounded-full border border-[color:var(--line)] text-[color:var(--muted)]">Python</span>
+              <span class="chip px-2.5 py-1 rounded-full border border-[color:var(--line)] text-[color:var(--muted)]">YOLOv8</span>
+              <span class="chip px-2.5 py-1 rounded-full border border-[color:var(--line)] text-[color:var(--muted)]">OpenCV</span>
+              <span class="chip px-2.5 py-1 rounded-full border border-[color:var(--line)] text-[color:var(--muted)]">Object Counting</span>
             </div>
+          </div>
+          <div class="sm:col-span-2 flex sm:justify-end items-start gap-2 text-[color:var(--ink)] self-start">
+            <i class="fab fa-github text-xl sm:text-2xl"></i>
+            <i class="fas fa-arrow-up-right-from-square arrow text-xs sm:text-sm mt-1"></i>
+          </div>
         </div>
-    </section>
+      </a>
 
-    <!-- 6. KONTAK -->
-    <section id="kontak" class="py-20 text-center">
-        <div class="max-w-2xl mx-auto px-4">
-            <h2 class="text-2xl font-bold text-white mb-4">Mari Berkolaborasi</h2>
-            <p class="text-gray-400 mb-8">Saya selalu terbuka untuk diskusi project, peluang kerja, atau sekadar
-                bertukar pikiran tentang AI dan teknologi.</p>
+    </div>
+  </div>
+</section>
 
-            <!-- Link Kontak Aktif -->
-            <!-- Link Kontak Aktif -->
-            <div class="flex flex-wrap justify-center gap-8 text-3xl mt-8">
-                <!-- WhatsApp -->
-                <a href="https://wa.me/6281386263177" target="_blank" rel="noopener noreferrer"
-                    class="text-gray-400 hover:text-green-500 transition-colors duration-300 transform hover:scale-110"
-                    title="Chat via WhatsApp">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
+<!-- KONTAK -->
+<section id="kontak" class="relative px-4 sm:px-6 md:px-10 py-24 sm:py-32 md:py-44 border-t border-[color:var(--line)] bg-[color:var(--bg-2)] overflow-hidden">
+  <div class="relative max-w-[1200px] mx-auto text-center">
+    <p class="mono text-[11px] uppercase tracking-[0.3em] text-[color:var(--muted)] reveal"><span class="num text-2xl mr-2 align-middle"></span>Kontak</p>
+    <h2 class="serif mt-5 sm:mt-6 reveal leading-[0.9]" style="transition-delay:.1s;font-size:clamp(3rem,13vw,9rem);">
+      Mari ber<span class="italic text-[color:var(--acc)]">kolaborasi.</span>
+    </h2>
+    <p class="text-base sm:text-lg text-[color:var(--muted)] mt-6 sm:mt-8 max-w-xl mx-auto reveal" style="transition-delay:.15s">
+      Saya selalu terbuka untuk diskusi project, peluang kerja, atau bertukar pikiran tentang AI dan teknologi.
+    </p>
 
-                <!-- Instagram -->
-                <a href="https://www.instagram.com/mhmd_1ky/" target="_blank" rel="noopener noreferrer"
-                    class="text-gray-400 hover:text-pink-500 transition-colors duration-300 transform hover:scale-110"
-                    title="Lihat Instagram Saya">
-                    <i class="fab fa-instagram"></i>
-                </a>
+    <a href="mailto:rizky.rmdhn@example.com" class="inline-block mt-8 sm:mt-10 serif text-2xl sm:text-3xl md:text-5xl italic ulink reveal break-all px-2" style="transition-delay:.2s">
+      rizky.rmdhn@example.com
+    </a>
 
-                <!-- GitHub -->
-                <a href="https://github.com/rizky-rmdhn" target="_blank" rel="noopener noreferrer"
-                    class="text-gray-400 hover:text-white transition-colors duration-300 transform hover:scale-110"
-                    title="Lihat GitHub Saya">
-                    <i class="fab fa-github"></i>
-                </a>
+    <div class="mt-12 sm:mt-16 flex flex-wrap justify-center gap-2 reveal" style="transition-delay:.25s">
+      <a href="https://wa.me/6281386263177" target="_blank" rel="noopener" class="flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border border-[color:var(--line)] bg-[color:var(--panel)] hover:bg-[color:var(--ink)] hover:text-[color:var(--bg)] transition">
+        <i class="fab fa-whatsapp text-lg"></i> <span class="mono text-[10px] sm:text-xs uppercase tracking-widest">WhatsApp</span>
+      </a>
+      <a href="https://www.instagram.com/mhmd_1ky/" target="_blank" rel="noopener" class="flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border border-[color:var(--line)] bg-[color:var(--panel)] hover:bg-[color:var(--ink)] hover:text-[color:var(--bg)] transition">
+        <i class="fab fa-instagram text-lg"></i> <span class="mono text-[10px] sm:text-xs uppercase tracking-widest">Instagram</span>
+      </a>
+      <a href="https://github.com/rizky-rmdhn" target="_blank" rel="noopener" class="flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border border-[color:var(--line)] bg-[color:var(--panel)] hover:bg-[color:var(--ink)] hover:text-[color:var(--bg)] transition">
+        <i class="fab fa-github text-lg"></i> <span class="mono text-[10px] sm:text-xs uppercase tracking-widest">GitHub</span>
+      </a>
+      <a href="https://www.linkedin.com/in/muhammad-rizky-ramadhan-110028406" target="_blank" rel="noopener" class="flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border border-[color:var(--line)] bg-[color:var(--panel)] hover:bg-[color:var(--ink)] hover:text-[color:var(--bg)] transition">
+        <i class="fab fa-linkedin text-lg"></i> <span class="mono text-[10px] sm:text-xs uppercase tracking-widest">LinkedIn</span>
+      </a>
+    </div>
+  </div>
+</section>
 
-                <!-- LinkedIn -->
-                <a href="https://www.linkedin.com/in/muhammad-rizky-ramadhan-110028406" target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-gray-400 hover:text-blue-500 transition-colors duration-300 transform hover:scale-110"
-                    title="Hubungkan di LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
+<footer class="px-4 sm:px-6 md:px-10 py-6 sm:py-8 flex flex-wrap items-center justify-between gap-3 border-t border-[color:var(--line)] mono text-[10px] uppercase tracking-widest text-[color:var(--muted)]">
+  <span>© 2025 Muhammad Rizky Ramadhan</span>
+  <span>tailwind · inter · instrument serif</span>
+</footer>
 
-                <!-- Email -->
-                <a href="mailto:mrizkyramd@gmail.com?subject=Tawaran%20Kerja%2520/%2520Kolaborasi%2520Portofolio"
-                    class="text-gray-400 hover:text-emerald-400 transition-colors duration-300 transform hover:scale-110"
-                    title="Kirim Email ke Saya">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="py-6 border-t border-gray-800 text-center text-xs font-mono text-gray-500">
-        &copy; 2026 <a href="https://www.instagram.com/mhmd_1ky/" target="_blank" rel="noopener noreferrer"
-            class="text-emerald-400 hover:text-emerald-300 hover:underline transition">Muhammad Rizky Ramadhan</a>.
-        Built with <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer"
-            class="text-emerald-400 hover:text-emerald-300 hover:underline transition">Tailwind CSS</a>.
-    </footer>
-
+<script>
+  // clock
+  const clock=document.getElementById('clock');
+  const t=()=>{const d=new Date();clock.textContent=d.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit',timeZone:'Asia/Jakarta'});};
+  t();setInterval(t,1000);
+  // reveal
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  // progress
+  const p=document.getElementById('progress');
+  addEventListener('scroll',()=>{const h=document.documentElement;p.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';},{passive:true});
+  // smooth scroll + close mobile nav
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{const id=a.getAttribute('href');if(id.length>1){const tg=document.querySelector(id);if(tg){e.preventDefault();tg.scrollIntoView({behavior:'smooth',block:'start'});closeNav();}}});
+  });
+  // mobile nav
+  const mnav=document.getElementById('mnav'),mbtn=document.getElementById('mbtn'),micn=document.getElementById('micn');
+  const closeNav=()=>{mnav.classList.remove('open');micn.className='fas fa-bars text-sm';};
+  mbtn.addEventListener('click',()=>{const o=mnav.classList.toggle('open');micn.className=o?'fas fa-xmark text-sm':'fas fa-bars text-sm';});
+</script>
 </body>
-
 </html>
